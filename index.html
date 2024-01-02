@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Votación</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Estilos para la disposición en divs */
+        #formularioVotacion {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .fila-formulario {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .etiqueta {
+            flex: 1;
+            padding-right: 10px;
+            text-align: right;
+            align-self: center;
+        }
+
+        .campo, select, input[type="text"], input[type="email"] {
+            flex: 2;
+            width: 100%; /* Establecer el ancho al 100% */
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<?php
+    include "cargarDatos.php";
+?>
+
+
+
+<form id='formularioVotacion' action='#' method='post'>
+    <br>
+    <!-- Campos del formulario -->
+
+    <!-- Nombre y Apellido -->
+    <div class="fila-formulario w-100">
+        <div class="etiqueta"><label for="nombreApellido">Nombre y Apellido:</label></div>
+        <div class="campo"><input type="text" id="nombreApellido" name="nombreApellido" required></div>
+    </div>
+
+    <!-- Alias -->
+    <div class="fila-formulario">
+        <div class="etiqueta"><label for="alias">Alias:</label></div>
+        <div class="campo"><input type="text" id="alias" name="alias" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" required></div>
+    </div>
+
+    <!-- RUT -->
+    <div class="fila-formulario">
+        <div class="etiqueta"><label for="rut">RUT:</label></div>
+        <div class="campo"><input type="text" id="rut" name="rut" pattern="\d{1,2}\.\d{3}\.\d{3}-[\d|kK]" required></div>
+    </div>
+
+    <!-- Email -->
+    <div class="fila-formulario">
+        <div class="etiqueta"><label for="email">Email:</label></div>
+        <div class="campo"><input type="email" id="email" name="email" required></div>
+    </div>
+
+    <!-- Combo Box Región -->
+    <div class="fila-formulario">
+        <div class="etiqueta"><label for="region">Región:</label></div>
+        <div class="campo">
+            <select id="region" name="region" onchange="cargarComunas()" required></select>
+        </div>
+    </div>
+
+    <!-- Combo Box Comuna -->
+    <div class="fila-formulario">
+        <div class="etiqueta"><label for="comuna">Comuna:</label></div>
+        <div class="campo">
+            <select id="comuna" name="comuna" required></select>
+        </div>
+    </div>
+
+    <!-- Combo Box Candidato -->
+    <div class="fila-formulario">
+        <div class="etiqueta"><label for="candidato">Candidato:</label></div>
+        <div class="campo">
+            <select id="candidato" name="candidato" required></select>
+        </div>
+    </div>
+
+    <!-- Checkbox Como se enteró de Nosotros -->
+    <div class="fila-formulario">
+        <div class="etiqueta"><label>Como se enteró de Nosotros:</label></div>
+        <div class="campo">
+            <input type="checkbox" id="opcion1" name="comoSeEntero[]" value="opcion1"> Web
+            <input type="checkbox" id="opcion2" name="comoSeEntero[]" value="opcion2"> TV
+            <input type="checkbox" id="opcion2" name="comoSeEntero[]" value="opcion2"> Redes Sociales
+            <input type="checkbox" id="opcion2" name="comoSeEntero[]" value="opcion2"> Otro
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div id="mensaje"></div>
+        <!-- Botón de envío -->
+        <button id="send" type="button" onclick="enviarFormulario()">Votar</button>
+    </div>
+    
+</form>
+
+</body>
+</html>

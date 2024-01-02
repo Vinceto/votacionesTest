@@ -1,0 +1,15 @@
+# votacionesTest
+Sistema de Votación. La interfaz deberá validar y guardar los datos del formulario en una base de datos. 
+
+Instrucciones de Instalación:
+
+1. Clona este repositorio en tu máquina local.
+2. Configura tu entorno de desarrollo con PHP y una base de datos compatible.
+3. Crea una base de datos y configura las credenciales en el archivo 'conexion.php'.
+4. Importa la estructura de la base de datos desde el archivo 'database.sql'.
+5. Abre el archivo 'index.php' en tu navegador para comenzar.
+
+Versión de PHP: 7.4.26
+Base de Datos: Mysql 8.0.27
+
+¡Gracias por ver y evaluar mi proyecto!
